@@ -173,6 +173,24 @@ def build_srt(segs:List[Dict], lower:bool, double:bool, preset:str)->str:
                     content=text))
     return srt.compose(out)
 
+def validate_model(model_name: str) -> str:
+    """Validate and return a working model name, with fallback"""
+    available_models = ['tiny', 'base', 'small', 'medium', 'large', 'large-v2']
+    
+    # If user specified a model that might not work, try it first
+    if model_name not in available_models:
+        try:
+            print(f"🔄 Testing {model_name}...")
+            test_model = WhisperModel(model_name, device="cpu", compute_type="int8")
+            print(f"✅ {model_name} works!")
+            return model_name
+        except Exception as e:
+            print(f"⚠️  {model_name} failed to load: {e}")
+            print(f"🔄 Falling back to large-v2...")
+            return "large-v2"
+    
+    return model_name
+
 # -------------- main -----------------
 def main():
     p=argparse.ArgumentParser(); p.add_argument("media", nargs='+', help="Path to audio/video file")
@@ -193,9 +211,9 @@ def main():
     
     # Load settings first
     settings = load_settings()
-    model_name = settings["model"]
+    model_name = validate_model(settings["model"])
     
-    # Use CPU for compatibility and model from settings
+    # Use CPU for cross-platform compatibility
     device = "cpu"
     model=WhisperModel(model_name, device=device, compute_type="int8")
 

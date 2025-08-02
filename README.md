@@ -9,6 +9,7 @@ This is a tool that transcribes audio from any media file and generates clean SR
 - **Smart line splitting**: Never splits words, respects character limits
 - **Customizable settings**: Edit settings.json to customize your preferences
 - **Batch processing**: No interactive prompts - perfect for automation
+- **Cross-platform**: Works on Windows, macOS, and Linux
 
 ## Settings
 The script uses a `settings.json` file for configuration. Edit this file to customize:
@@ -26,9 +27,12 @@ The script uses a `settings.json` file for configuration. Edit this file to cust
 ```
 
 ### Settings Explained
-- **model**: Whisper model to use (options: tiny, base, small, medium, large, large-v2)
+- **model**: Whisper model to use (options: tiny, base, small, medium, large, large-v2, openai/whisper-large-v3)
+  - Reliable models: tiny, base, small, medium, large, large-v2
+  - Experimental: openai/whisper-large-v3 (may fail to download)
+  - Script automatically falls back to large-v2 if model fails to load
 - **lower_case**: Convert text to lowercase
-- **simplify_punctuation**: Remove extra punctuation marks (dialogue mode)
+- **simplify_punctuation**: Remove extra punctuation marks that Whisper sometimes adds, including musical notations, parentheses, and more.
 - **single_lines**: Use single line per subtitle (false = double lines)
 - **max_chars**: Maximum characters per subtitle line (7-72)
 - **min_duration**: Minimum subtitle duration in seconds (1.2-6.0)
