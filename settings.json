@@ -1,0 +1,9 @@
+{
+  "model": "large-v2",
+  "lower_case": true,
+  "simplify_punctuation": true,
+  "single_lines": true,
+  "max_chars": 25,
+  "min_duration": 1.2,
+  "gap_frames": 0
+} 
