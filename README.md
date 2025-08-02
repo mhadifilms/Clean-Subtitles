@@ -12,7 +12,7 @@ This is a tool that transcribes audio from any media file and generates clean SR
 - **Cross-platform**: Works on Windows, macOS, and Linux
 
 ## Settings
-The script uses a `settings.json` file for configuration. Edit this file to customize:
+The script uses [`settings.json`](settings.json) for configuration. Edit this file to customize:
 
 ```json
 {
@@ -45,20 +45,6 @@ brew install ffmpeg
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 python script.py path/to/your/file.mp4
-```
-
-The script will automatically create a `settings.json` file with default settings on first run. Edit this file to customize your preferences.
-
-## Examples
-```bash
-# Simple usage
-python script.py video.mp4
-
-# Paths with spaces (no quotes needed!)
-python script.py /Volumes/external/My Videos/movie.mkv
-
-# Complex paths work too
-python script.py "My Videos" "Summer Vacation" movie.mp4
 ```
 
 ## Output

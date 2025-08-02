@@ -1,5 +1,5 @@
 {
-  "model": "large-v2",
+  "model": "large-v3",
   "lower_case": true,
   "simplify_punctuation": true,
   "single_lines": true,
